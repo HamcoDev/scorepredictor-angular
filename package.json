@@ -1,0 +1,14 @@
+{
+  "name": "scorepredictor-angular",
+  "version": "1.0.0",
+  "description": "Score Predictor",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sam Hampton",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.13.4"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "name": "scorepredictor-angular",
+  "description": "Score Predictor",
+  "main": "index.js",
+  "authors": [
+    "Sam Hampton"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "private": true
+}
