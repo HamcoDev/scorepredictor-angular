@@ -43,8 +43,15 @@ function handleError(res, reason, message, code) {
  */
 
 app.get("/fixtures", function(req, res) {
-    var newFixture = req.body;
+});
+
+app.post("/fixtures", function(req, res) {
+      var newFixture = req.body;
   newFixture.createDate = new Date();
+
+//   if (!(req.body.firstName || req.body.lastName)) {
+//     handleError(res, "Invalid user input", "Must provide a first or last name.", 400);
+//   }
 
   db.collection(FIXTURES_COLLECTION).insertOne(newFixture, function(err, doc) {
     if (err) {
@@ -53,9 +60,6 @@ app.get("/fixtures", function(req, res) {
       res.status(201).json(doc.ops[0]);
     }
   });
-});
-
-app.post("/fixtures", function(req, res) {
 });
 
 /*  "/fixtures/:id"
