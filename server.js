@@ -5,16 +5,19 @@ var express = require("express"),
     ObjectID = mongodb.ObjectID,
     request = require("request");
 
-var FIXTURES_COLLECTION = "fixtures";
-
 var app = express();
 app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.json());
 
+//use when testing locally
+// var port = 3030;
+// app.listen(port);
+// console.log('Listening on port ' + port + '...');
+
 // Create a database variable outside of the database connection callback to reuse the connection pool in your app.
 var db;
 
-// Connect to the database before starting the application server.
+//Connect to the database before starting the application server.
 mongodb.MongoClient.connect(process.env.MONGOLAB_URI, function (err, database) {
   if (err) {
     console.log(err);
@@ -29,7 +32,7 @@ mongodb.MongoClient.connect(process.env.MONGOLAB_URI, function (err, database) {
   var server = app.listen(process.env.PORT || 8080, function () {
     var port = server.address().port;
     console.log("App now running on port", port);
-  });
+   });
 });
 
 // Generic error handler used by all endpoints.
@@ -42,31 +45,20 @@ function handleError(res, reason, message, code) {
  *    GET: finds all fixtures
  *    POST: creates a new fixture
  */
-
+ 
 app.get("/updateFixtures", function(req, res) {
-    return request.get("http://api.football-data.org/alpha/soccerseasons/398/fixtures")
-        .on('response', function(response) {
-            return response.body; // 'image/png' 
-        });
+    request.get("http://api.football-data.org/alpha/soccerseasons/398/fixtures", function (error, response, body) {
+        var json = JSON.parse(body).fixtures;
+        
+        db.collection(FIXTURES_COLLECTION).insert(json, function(err, doc) {
+            if (err) {
+                handleError(res, err.message, "Failed to update fixtures.");
+            } else {
+                res.status(201).json(doc.ops[0]);
+    }
+  });
+    });
 });
-
-// app.get("/updateFixtures", function(req, res) {;
-//     var fixtures = getFixtures();
-//     console.log(fixtures);
-//     fixtures.createDate = new Date();
-
-// //   if (!(req.body.firstName || req.body.lastName)) {
-// //     handleError(res, "Invalid user input", "Must provide a first or last name.", 400);
-// //   }
-
-//   db.fixturesCollection.insert(fixtures, function(err, doc) {
-//     if (err) {
-//       handleError(res, err.message, "Failed to update fixtures.");
-//     } else {
-//       res.status(201).json(doc.ops[0]);
-//     }
-//   });
-// });
 
 /*  "/fixtures/:id"
  *    GET: find fixture by id
@@ -81,26 +73,4 @@ app.put("/fixtures/:id", function(req, res) {
 });
 
 app.delete("/fixtures/:id", function(req, res) {
-});
-
-function getFixtures() {
-    return request.get("http://api.football-data.org/alpha/soccerseasons/398/fixtures")
-        .on('response', function(response) {
-            return response.body; // 'image/png' 
-        });
-};  
-
-// function getFixtures(callback) {
-//     return http.get({
-//         host: 'http://api.football-data.org',
-//         path: '/alpha/soccerseasons/398/fixtures'
-//     }, function(response) {
-//             var body = '';
-//             response.on('data', function(d) {
-//                 body += d;
-//             });
-//             response.on('end', function() {
-//                 callback();
-//             })
-//     })
-// };
+}); 
