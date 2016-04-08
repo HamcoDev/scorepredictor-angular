@@ -1,10 +1,10 @@
-angular.module("scoresApp").config(["$stateProvider", "$urlRouterProvider", function ($stateProvider, $urlRouterProvider) {
+app.config(["$stateProvider", "$urlRouterProvider", function ($stateProvider, $urlRouterProvider) {
     "use strict";
 
-    $stateProvider.state("menu", {
-        templateUrl: "ng-templates/menu.html",
-        controller: "menuController"
-    });
+    // $stateProvider.state("menu", {
+    //     templateUrl: "ng-templates/menu.html",
+    //     controller: "menuController"
+    // });
 
     $stateProvider.state("login", {
         url: "/login",
@@ -12,7 +12,7 @@ angular.module("scoresApp").config(["$stateProvider", "$urlRouterProvider", func
         controller: "loginController"
     });
 
-    $stateProvider.state("menu.predictions/enter", {
+    $stateProvider.state("predictions/enter", {
         url: "/predictions/enter",
         views: {
             'menuContent': {
@@ -22,7 +22,7 @@ angular.module("scoresApp").config(["$stateProvider", "$urlRouterProvider", func
         }
     });
 
-    $stateProvider.state("menu.predictions/view", {
+    $stateProvider.state("predictions/view", {
         url: "/predictions/view",
         views: {
             'menuContent': {
@@ -32,7 +32,7 @@ angular.module("scoresApp").config(["$stateProvider", "$urlRouterProvider", func
         }
     });
 
-    $stateProvider.state("menu.leagueTable", {
+    $stateProvider.state("leagueTable", {
         url: "/leagueTable",
         views: {
             'menuContent': {
@@ -48,7 +48,7 @@ angular.module("scoresApp").config(["$stateProvider", "$urlRouterProvider", func
         controller: "registrationController"
     });
 
-    $stateProvider.state("menu.home", {
+    $stateProvider.state("home", {
         url: "/home",
         views: {
             'menuContent': {

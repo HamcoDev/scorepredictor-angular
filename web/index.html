@@ -1,47 +1,55 @@
 <!DOCTYPE html>
-<html data-ng-app="scoresApp">
+<html>
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title></title>
-  
-  <link href="css/style.css" rel="stylesheet">
-  
+    <title></title>
+
+    <link href="./css/style.css" rel="stylesheet">
+    <link href="./bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
 </head>
-<body> 
-  <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <div class="navbar-brand" href="#/">Scores Predictor</div>
+
+<body data-ng-app="scoresApp">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <div class="navbar-brand" href="#/">Scores Predictor</div>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a ui-sref="home">Home</a></li>
+                    <li class="active"><a ui-sref="">Submit Predictions</a></li>
+                    <li class="active"><a href="/predictions/view">View Predictions</a></li>
+                    <li class="active"><a href="#/">League Table</a></li>
+
+                </ul>
+            </div>
         </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#/">Home</a></li>
-          </ul>
-        </div>
-      </div>
     </nav>
     <!-- Dynamically render templates -->
-    <div class="container" ng-view>
+    <div class="container" ui-view>
+
     </div>
-  
-  <script type="text/javascript" src="../bower_components/angular/angular.js"></script>
-  <script type="text/javascript" src="../bower_components/angular-resource/angular-resource.js"></script>
-  <script type="text/javascript" src="../bower_components/angular-routes/angular-routes.js"></script>
-  <script type="text/javascript" src="../bower_components/bootstrap/dist/css/bootstrap.css"></script>
-  <script type="text/javascript" src="../bower_components/jquery/dist/jquery.js"></script>
-  
-  <script type="text/javascript" src="js/app.js"></script>
-  <script type="text/javascript" src="js/application/routes.js"></script>
-  
-  <script type="text/javascript" src="js/controllers/enterPredictionsController.js"></script>
-  <script type="text/javascript" src="js/controllers/viewPredictionsController.js"></script>
-  <script type="text/javascript" src="js/controllers/registrationController.js"></script>
-  <script type="text/javascript" src="js/controllers/loginController.js"></script>
-  <script type="text/javascript" src="js/controllers/homeController.js"></script>
-  <script type="text/javascript" src="js/controllers/menuController.js"></script>
-  <script type="text/javascript" src="js/controllers/leagueTableController.js"></script>
-  <script type="text/javascript" src="js/services/dataService.js"></script>
+
+    <script type="text/javascript" src="./bower_components/angular/angular.js"></script>
+    <script type="text/javascript" src="./bower_components/angular-resource/angular-resource.js"></script>
+    <script type="text/javascript" src="./bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+
+    <script type="text/javascript" src="./bower_components/jquery/dist/jquery.js"></script>
+
+    <script type="text/javascript" src="./js/app.js"></script>
+    <script type="text/javascript" src="./js/application/routes.js"></script>
+
+    <script type="text/javascript" src="./js/controllers/enterPredictionsController.js"></script>
+    <script type="text/javascript" src="./js/controllers/viewPredictionsController.js"></script>
+    <script type="text/javascript" src="./js/controllers/registrationController.js"></script>
+    <script type="text/javascript" src="./js/controllers/loginController.js"></script>
+    <script type="text/javascript" src="./js/controllers/homeController.js"></script>
+    <script type="text/javascript" src="./js/controllers/menuController.js"></script>
+    <script type="text/javascript" src="./js/controllers/leagueTableController.js"></script>
+    <script type="text/javascript" src="./js/services/dataService.js"></script>
 </body>
+
 </html>

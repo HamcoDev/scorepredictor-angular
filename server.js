@@ -4,9 +4,11 @@ var express = require("express"),
     mongodb = require("mongodb"),
     ObjectID = mongodb.ObjectID,
     request = require("request");
+    
+var matchWeek = 32;
 
 var app = express();
-app.use(express.static(__dirname + "/public"));
+app.use(express.static(__dirname + "/web"));
 app.use(bodyParser.json());
 
 // Create a database variable outside of the database connection callback to reuse the connection pool in your app.
@@ -62,10 +64,9 @@ app.get("/updateFixtures", function(req, res) {
 });
 
 app.get("/getFixtures", function(req, res) {
-
-    db.collection('fixtures').insert(json, function(err, doc) {
+    return db.fixtures.find({"matchday":33}, function(err, doc) {
         if (err) {
-            handleError(res, err.message, "Failed to update fixtures.");
+            handleError(res, err.message, "Failed to get fixtures.");
         } else {
             res.status(201).json(doc.ops[0]);
         }
