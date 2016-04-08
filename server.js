@@ -3,7 +3,7 @@ var express = require("express"),
     bodyParser = require("body-parser"),
     mongodb = require("mongodb"),
     ObjectID = mongodb.ObjectID,
-    http = require("http");
+    request = require("request");
 
 var FIXTURES_COLLECTION = "fixtures";
 
@@ -43,26 +43,30 @@ function handleError(res, reason, message, code) {
  *    POST: creates a new fixture
  */
 
-app.get("/getFixtures", function(req, res) {
+app.get("/updateFixtures", function(req, res) {
+    return request.get("http://api.football-data.org/alpha/soccerseasons/398/fixtures")
+        .on('response', function(response) {
+            return response.body; // 'image/png' 
+        });
 });
 
-app.get("/updateFixtures", function(req, res) {;
-    var fixtures = getFixtures();
-    console.log(fixtures);
-    fixtures.createDate = new Date();
+// app.get("/updateFixtures", function(req, res) {;
+//     var fixtures = getFixtures();
+//     console.log(fixtures);
+//     fixtures.createDate = new Date();
 
-//   if (!(req.body.firstName || req.body.lastName)) {
-//     handleError(res, "Invalid user input", "Must provide a first or last name.", 400);
-//   }
+// //   if (!(req.body.firstName || req.body.lastName)) {
+// //     handleError(res, "Invalid user input", "Must provide a first or last name.", 400);
+// //   }
 
-  db.fixturesCollection.insert(fixtures, function(err, doc) {
-    if (err) {
-      handleError(res, err.message, "Failed to update fixtures.");
-    } else {
-      res.status(201).json(doc.ops[0]);
-    }
-  });
-});
+//   db.fixturesCollection.insert(fixtures, function(err, doc) {
+//     if (err) {
+//       handleError(res, err.message, "Failed to update fixtures.");
+//     } else {
+//       res.status(201).json(doc.ops[0]);
+//     }
+//   });
+// });
 
 /*  "/fixtures/:id"
  *    GET: find fixture by id
@@ -79,17 +83,24 @@ app.put("/fixtures/:id", function(req, res) {
 app.delete("/fixtures/:id", function(req, res) {
 });
 
-function getFixtures(callback) {
-    return http.get({
-        host: 'http://api.football-data.org',
-        path: '/alpha/soccerseasons/398/fixtures'
-    }, function(response) {
-            var body = '';
-            response.on('data', function(d) {
-                body += d;
-            });
-            response.on('end', function() {
-                callback();
-            })
-    })
-};
+function getFixtures() {
+    return request.get("http://api.football-data.org/alpha/soccerseasons/398/fixtures")
+        .on('response', function(response) {
+            return response.body; // 'image/png' 
+        });
+};  
+
+// function getFixtures(callback) {
+//     return http.get({
+//         host: 'http://api.football-data.org',
+//         path: '/alpha/soccerseasons/398/fixtures'
+//     }, function(response) {
+//             var body = '';
+//             response.on('data', function(d) {
+//                 body += d;
+//             });
+//             response.on('end', function() {
+//                 callback();
+//             })
+//     })
+// };
