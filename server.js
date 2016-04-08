@@ -45,13 +45,25 @@ app.get("/updateFixtures", function(req, res) {
     request.get("http://api.football-data.org/alpha/soccerseasons/398/fixtures", function(error, response, body) {
         var json = JSON.parse(body).fixtures;
 
-        db.collection('Fixtures').insert(json, function(err, doc) {
+        db.collection('fixtures').insert(json, function(err, doc) {
             if (err) {
                 handleError(res, err.message, "Failed to update fixtures.");
             } else {
                 res.status(201).json(doc.ops[0]);
             }
         });
+    });
+});
+
+app.get("/getFixtures", function(req, res) {
+    
+        db.collection('fixtures').insert(json, function(err, doc) {
+            if (err) {
+                handleError(res, err.message, "Failed to update fixtures.");
+            } else {
+                res.status(201).json(doc.ops[0]);
+            }
+        
     });
 });
 
