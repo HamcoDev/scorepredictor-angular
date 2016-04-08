@@ -1,17 +1,16 @@
 {
   "name": "scorepredictor-angular",
   "version": "1.0.0",
-  "description": "Score Predictor",
+  "description": "Scores Predictor",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "author": "Sam Hampton",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.13.4"
-  },
-  "devDependencies": {
+    "express": "^4.13.4",
     "body-parser": "^1.15.0",
     "mongodb": "^2.1.15"
   }
