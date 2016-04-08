@@ -4,8 +4,9 @@ var express = require("express"),
     mongodb = require("mongodb"),
     ObjectID = mongodb.ObjectID,
     request = require("request");
-    
-var matchWeek = 32;
+
+var FIXTURES_COLLECTION = 'fixtures';
+var currentMatchday = 32;
 
 var app = express();
 app.use(express.static(__dirname + "/web"));
@@ -47,12 +48,12 @@ app.get("/updateFixtures", function(req, res) {
     request.get("http://api.football-data.org/alpha/soccerseasons/398/fixtures", function(error, response, body) {
         var json = JSON.parse(body).fixtures;
 
-        var dropCollection = db.collection('fixtures').drop();
+        var dropCollection = db.collection(FIXTURES_COLLECTION).drop();
         if (dropCollection === false) {
             res.status(500);
         }
         else {
-            db.collection('fixtures').insert(json, function(err, doc) {
+            db.collection(FIXTURES_COLLECTION).insert(json, function(err, doc) {
                 if (err) {
                     handleError(res, err.message, "Failed to update fixtures.");
                 } else {
@@ -63,15 +64,14 @@ app.get("/updateFixtures", function(req, res) {
     });
 });
 
-app.get("/getFixtures", function(req, res) {
-    return db.fixtures.find({"matchday":33}, function(err, doc) {
-        if (err) {
-            handleError(res, err.message, "Failed to get fixtures.");
-        } else {
-            res.status(201).json(doc.ops[0]);
-        }
-
-    });
+app.get("/viewFixtures", function(req, res) {
+  db.collection(FIXTURES_COLLECTION).find({ "matchday": currentMatchday }).toArray(function(err, docs) {
+    if (err) {
+      handleError(res, err.message, "Failed to get fixtures.");
+    } else {
+      res.status(200).json(docs);
+    }
+  });
 });
 
 /*  "/fixtures/:id"
