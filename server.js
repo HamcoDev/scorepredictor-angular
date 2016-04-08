@@ -45,7 +45,7 @@ app.get("/updateFixtures", function(req, res) {
     request.get("http://api.football-data.org/alpha/soccerseasons/398/fixtures", function(error, response, body) {
         var json = JSON.parse(body).fixtures;
 
-        db.collection('fixtures').insert(json, function(err, doc) {
+        db.collection('fixtures').updateMany(json, function(err, doc) {
             if (err) {
                 handleError(res, err.message, "Failed to update fixtures.");
             } else {
