@@ -12,11 +12,8 @@ app.use(bodyParser.json());
 // Create a database variable outside of the database connection callback to reuse the connection pool in your app.
 var db;
 
-//var mongoString = process.env.MONGOLAB_URI;
-var mongoString = 'mongodb://localhost:27017'
-
 //Connect to the database before starting the application server.
-mongodb.MongoClient.connect(mongoString, function(err, database) {
+mongodb.MongoClient.connect(process.env.MONGOLAB_URI || 'mongodb://localhost:27017', function(err, database) {
     if (err) {
         console.log(err);
         process.exit(1);
@@ -48,7 +45,7 @@ app.get("/updateFixtures", function(req, res) {
     request.get("http://api.football-data.org/alpha/soccerseasons/398/fixtures", function(error, response, body) {
         var json = JSON.parse(body).fixtures;
 
-        db.collection(FIXTURES_COLLECTION).insert(json, function(err, doc) {
+        db.collection('Fixtures').insert(json, function(err, doc) {
             if (err) {
                 handleError(res, err.message, "Failed to update fixtures.");
             } else {
