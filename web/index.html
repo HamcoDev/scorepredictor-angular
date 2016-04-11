@@ -5,9 +5,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title></title>
-
-    <link href="./css/style.css" rel="stylesheet">
+    <title>Scores Predictor</title> 
+    
     <link href="./bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
 </head>
 
@@ -19,29 +18,30 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a ui-sref="home">Home</a></li>
-                    <li class="active"><a ui-sref="">Submit Predictions</a></li>
-                    <li class="active"><a href="/predictions/view">View Predictions</a></li>
-                    <li class="active"><a href="#/">League Table</a></li>
-
+                    <li class="active"><a href="#home">Home</a></li>
+                    <li class="active"><a href="#predictions/enter">Submit Predictions</a></li>
+                    <li class="active"><a href="#predictions/view">View Predictions</a></li>
+                    <li class="active"><a href="#leagueTable">League Table</a></li>
                 </ul>
             </div>
         </div>
     </nav>
+    
+    
     <!-- Dynamically render templates -->
-    <div class="container" ui-view>
+    <div class="container" ng-view>
 
     </div>
 
     <script type="text/javascript" src="./bower_components/angular/angular.js"></script>
     <script type="text/javascript" src="./bower_components/angular-resource/angular-resource.js"></script>
-    <script type="text/javascript" src="./bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-
+    <script type="text/javascript" src="./bower_components/angular-route/angular-route.js"></script>
+    
     <script type="text/javascript" src="./bower_components/jquery/dist/jquery.js"></script>
-
     <script type="text/javascript" src="./js/app.js"></script>
     <script type="text/javascript" src="./js/application/routes.js"></script>
 
+    <script type="text/javascript" src="./js/controllers/mainController.js"></script>
     <script type="text/javascript" src="./js/controllers/enterPredictionsController.js"></script>
     <script type="text/javascript" src="./js/controllers/viewPredictionsController.js"></script>
     <script type="text/javascript" src="./js/controllers/registrationController.js"></script>

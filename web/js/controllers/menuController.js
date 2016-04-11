@@ -1,13 +1,11 @@
 app.controller("menuController", menuController);
 
 menuController.$inject = [
-  "$scope",
-  "dataService"
+  "$scope"
 ];
 
 function menuController(
-  $scope,
-  dataService
+  $scope
   ) {
 
 //   $scope.logout = function() {

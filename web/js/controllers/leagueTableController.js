@@ -1,14 +1,11 @@
-angular.module("scoresApp")
-  .controller("leagueTableController", leagueTableController);
+app.controller("leagueTableController", leagueTableController);
 
 leagueTableController.$inject = [
-  "$scope",
-  "dataService"
+  "$scope"
 ];
 
 function leagueTableController(
-  $scope,
-  dataService
+  $scope
   ) {
 //   dataService.checkUserAuthenticated();
 //   $scope.leagueData = [];

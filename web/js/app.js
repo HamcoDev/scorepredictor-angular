@@ -1,1 +1,1 @@
-var app = angular.module("scoresApp", ["ui.router"]);
+var app = angular.module("scoresApp", ['ngRoute']);

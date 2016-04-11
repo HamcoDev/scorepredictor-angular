@@ -2,14 +2,12 @@ app.controller("enterPredictionsController", enterPredictionsController);
 
 enterPredictionsController.$inject = [
   "$scope",
-  "$http",
-  "dataService"
+  "$http"
 ];
 
 function enterPredictionsController(
   $scope,
-  $http,
-  dataService
+  $http
   ) {
 //   dataService.checkUserAuthenticated();
 

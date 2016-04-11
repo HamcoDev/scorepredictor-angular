@@ -1,13 +1,11 @@
 app.controller("loginController", loginController);
 
 loginController.$inject = [
-  "$scope",
-  "dataService"
+  "$scope"
 ];
 
 function loginController(
-  $scope,
-  dataService
+  $scope
   ) {
 //   $scope.login = function (email, password) {
 //     dataService.login(email, password);
