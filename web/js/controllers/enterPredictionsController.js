@@ -17,6 +17,33 @@ function enterPredictionsController(
         .then(function(fixtures) {
             $scope.fixtures = fixtures;
         });
+        
+        
+    //       $scope.submit = function () {
+    //         var user = dataService.ref.child("scores/user");
+    //         var userRef = user.child(dataService.authenticatedUser.uid)
+
+    //         var matchday = userRef.child("matchday");
+    //         var matchdayRef = matchday.child(currentMatchday);
+
+    //         var fixture = matchdayRef.child("fixture");
+
+    //         var predictions = [];
+
+    //         $scope.fixtureList.fixtures.forEach(function (fixture) {
+
+    //           predictions.push({
+    //             homeTeam: fixture.homeTeamName,
+    //             homePrediction: fixture.homePrediction == null ? 0 : fixture.homePrediction,
+    //             awayTeam: fixture.awayTeamName,
+    //             awayPrediction: fixture.awayPrediction == null ? 0 : fixture.awayPrediction,
+    //             date: fixture.date,
+    //             status: fixture.status
+    //           });
+    //         });
+    //         fixture.set(predictions);
+    //       }
+    //     });
 
     // getCurrentMatchday()
     //     .then(function(currentMatchday) {
