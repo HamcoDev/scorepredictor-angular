@@ -1,61 +1,75 @@
 app.controller("enterPredictionsController", enterPredictionsController);
 
 enterPredictionsController.$inject = [
-  "$scope",
-  "$http"
+    "$scope",
+    "$http",
+    "dataService"
 ];
 
 function enterPredictionsController(
-  $scope,
-  $http
-  ) {
-//   dataService.checkUserAuthenticated();
+    $scope,
+    $http,
+    dataService
+) {
+    //   dataService.checkUserAuthenticated();
 
-//   dataService.currentMatchday()
-//     .then(function (currentMatchday) {
-//       $http({
-//         headers: { 'X-Auth-Token': 'b435bb252dad4a63ab0ab09b10314773' },
-//         method: 'GET',
-//         url: 'http://api.football-data.org/alpha/soccerseasons/398/fixtures/?matchday='.concat(currentMatchday)
-//       }).then(function successCallback(response) {
-//         $scope.fixtureList = response.data;
-//       }, function errorCallback(response) {
-//       });
+    dataService.retrieveFixtures()
+        .then(function(fixtures) {
+            $scope.fixtures = fixtures;
+        });
 
-//       $scope.submit = function () {
-//         var user = dataService.ref.child("scores/user");
-//         var userRef = user.child(dataService.authenticatedUser.uid)
+    // getCurrentMatchday()
+    //     .then(function(currentMatchday) {
+    //         $http({
+    //             //headers: { 'X-Auth-Token': 'b435bb252dad4a63ab0ab09b10314773' },
+    //             method: 'GET',
+    //             url: '/viewFixtures'
+    //         }).then(function successCallback(response) {
+    //             $scope.fixtureList = response.data;
+    //         }, function errorCallback(response) {
+    //         });
+    //     });
 
-//         var matchday = userRef.child("matchday");
-//         var matchdayRef = matchday.child(currentMatchday);
+    // function getCurrentMatchday() {
+    //     return 29;
+    // };
 
-//         var fixture = matchdayRef.child("fixture");
 
-//         var predictions = [];
 
-//         $scope.fixtureList.fixtures.forEach(function (fixture) {
+    //       $scope.submit = function () {
+    //         var user = dataService.ref.child("scores/user");
+    //         var userRef = user.child(dataService.authenticatedUser.uid)
 
-//           predictions.push({
-//             homeTeam: fixture.homeTeamName,
-//             homePrediction: fixture.homePrediction == null ? 0 : fixture.homePrediction,
-//             awayTeam: fixture.awayTeamName,
-//             awayPrediction: fixture.awayPrediction == null ? 0 : fixture.awayPrediction,
-//             date: fixture.date,
-//             status: fixture.status
-//           });
-//         });
-//         fixture.set(predictions);
-//       }
-//     });
+    //         var matchday = userRef.child("matchday");
+    //         var matchdayRef = matchday.child(currentMatchday);
 
-//   $scope.matchdayChanged = function () {
-//     $http({
-//       headers: { 'X-Auth-Token': 'b435bb252dad4a63ab0ab09b10314773' },
-//       method: 'GET',
-//       url: 'http://api.football-data.org/alpha/soccerseasons/398/fixtures/?matchday='.concat($scope.selectedMatchday)
-//     }).then(function successCallback(response) {
-//       $scope.fixtureList = response.data;
-//     }, function errorCallback(response) {
-//     });
-//   }
+    //         var fixture = matchdayRef.child("fixture");
+
+    //         var predictions = [];
+
+    //         $scope.fixtureList.fixtures.forEach(function (fixture) {
+
+    //           predictions.push({
+    //             homeTeam: fixture.homeTeamName,
+    //             homePrediction: fixture.homePrediction == null ? 0 : fixture.homePrediction,
+    //             awayTeam: fixture.awayTeamName,
+    //             awayPrediction: fixture.awayPrediction == null ? 0 : fixture.awayPrediction,
+    //             date: fixture.date,
+    //             status: fixture.status
+    //           });
+    //         });
+    //         fixture.set(predictions);
+    //       }
+    //     });
+
+    //   $scope.matchdayChanged = function () {
+    //     $http({
+    //       headers: { 'X-Auth-Token': 'b435bb252dad4a63ab0ab09b10314773' },
+    //       method: 'GET',
+    //       url: 'http://api.football-data.org/alpha/soccerseasons/398/fixtures/?matchday='.concat($scope.selectedMatchday)
+    //     }).then(function successCallback(response) {
+    //       $scope.fixtureList = response.data;
+    //     }, function errorCallback(response) {
+    //     });
+    //   }
 };

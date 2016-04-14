@@ -1,12 +1,13 @@
 app.controller("homeController", homeController);
 
 homeController.$inject = [
-  "$scope"
+  "$scope",
+  "dataService"
 ];
 
 function homeController(
-  $scope
+  $scope,
+  dataService
   ) {
   //dataService.checkUserAuthenticated();
-  $scope.message = 'home page!';
 };

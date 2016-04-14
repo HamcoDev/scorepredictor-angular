@@ -1,7 +1,5 @@
 <div ng-controller="leagueTableController" data-ng-init="init()">
-    <h2>
-						<center>League Table</center>
-					</h2>
+    <h2>League Table</h2>
     <div class="row header table table-striped">
         <div class="col">Name</div>
         <div class="col">Points</div>
@@ -10,19 +8,4 @@
         <div class="col">{{user.name}}</div>
         <div class="col">{{user.points}}</div>
     </div>
-    </ion-content>
-    </ion-tab>
-    <ion-tab title="Weekly">
-        <ion-content>
-            <h2>
-						<center>League Table</center>
-					</h2>
-            <div class="row header table table-striped">
-                <div class="col">Name</div>
-                <div class="col">Points</div>
-            </div>
-            <div class="row" ng-repeat="user in weekScore | orderBy: 'points' : true">
-                <div class="col">{{user.name}}</div>
-                <div class="col">{{user.points}}</div>
-            </div>
 </div>

@@ -1,27 +1,40 @@
-app.factory("dataService", dataService);
-
-dataService.$inject = [
-    "$http",
-    "$q"
-];
-
-function dataService(
-    $http,
-    $q
-) {
-
-
-    var getFixtures = function() {
-        return $q(function(resolve, reject) {
-            $http.get("/viewFixtures", function(fixtures) {
-                resolve(fixtures);
-            });
-        });
-    }
-
+app.service("dataService", function($q, $http) {
     return {
-        getFixtures: getFixtures
+        
+        retrieveFixtures: function() {
+            return $q(function(resolve, reject) {
+                $http.get('/viewFixtures')
+                    .then(function(fixtures) {
+                        resolve(fixtures.data);
+                    });
+            });
+        },
+        
+        updateFixtures: function() {
+            return $q(function(resolve, reject) {
+                $http.get('/updateFixtures')
+                    .then(function(response) {
+                        resolve(response);  
+                    });
+            });
+        }
     }
+});
+
+
+// app.factory("dataService", dataService);
+
+// dataService.$inject = [
+//     "$http",
+//     "$q"
+// ];
+
+// function dataService(
+//     $http,
+//     $q
+// ) {
+
+
 
     //   var ref = new Firebase('https://ionic-scores.firebaseio.com');
     //   var authenticatedUser = ref.getAuth();
@@ -32,14 +45,15 @@ function dataService(
     //     }
     //   }
 
-    //   function getCurrentMatchday() {
-    //     return $q(function (resolve, reject) {
-    //       var url = "https://ionic-scores.firebaseio.com/currentMatchday";
-    //       var currentMatchdayRef = new Firebase(url);
-    //       currentMatchdayRef.on("value", function (snapshot) {
-    //         resolve(snapshot.val());
-    //       });
-    //     });
+    //   var getCurrentMatchday = function() {
+    //       return 29;
+    //     // return $q(function (resolve, reject) {
+    //     //   var url = "https://ionic-scores.firebaseio.com/currentMatchday";
+    //     //   var currentMatchdayRef = new Firebase(url);
+    //     //   currentMatchdayRef.on("value", function (snapshot) {
+    //     //     resolve(snapshot.val());
+    //     //   });
+    //     // });
     //   }
 
     //   function logout() {
@@ -47,6 +61,8 @@ function dataService(
     //     authenticatedUser = ref.getAuth();
     //     $state.go('login');
     //   }
+
+
 
     //   function getUsers() {
     //     return $q(function (resolve, reject) {
@@ -121,28 +137,28 @@ function dataService(
     //     });
     //   }
 
-    //   return {
-    //     ref: ref,
-    //     authenticatedUser: authenticatedUser,
-    //     checkUserAuthenticated: checkUserAuthenticated,
-    //     logout: logout,
-    //     login: function (email, password) {
-    //       ref.authWithPassword({
-    //         email: email,
-    //         password: password
-    //       }, function (error, authData) {
-    //         if (error) {
-    //           console.log("Login Failed!", error);
-    //         } else {
-    //           authenticatedUser = ref.getAuth();
-    //           $state.go('menu.home');
-    //         }
-    //       });
-    //     },
-    //     getCurrentMatchday: getCurrentMatchday,
-    //     getUsers: getUsers,
-    //     getTotalScore: getTotalScore,
-    //     getLastWeekScore: getLastWeekScore,
-    //     getLeagueTotals: getLeagueTotals
-    //   }
-};
+//       return {
+//     //     ref: ref,
+//     //     authenticatedUser: authenticatedUser,
+//     //     checkUserAuthenticated: checkUserAuthenticated,
+//     //     logout: logout,
+//     //     login: function (email, password) {
+//     //       ref.authWithPassword({
+//     //         email: email,
+//     //         password: password
+//     //       }, function (error, authData) {
+//     //         if (error) {
+//     //           console.log("Login Failed!", error);
+//     //         } else {
+//     //           authenticatedUser = ref.getAuth();
+//     //           $state.go('menu.home');
+//     //         }
+//     //       });
+//     //     },
+//            getCurrentMatchday: getCurrentMatchday
+//     //     getUsers: getUsers,
+//     //     getTotalScore: getTotalScore,
+//     //     getLastWeekScore: getLastWeekScore,
+//     //     getLeagueTotals: getLeagueTotals
+//        }
+// };

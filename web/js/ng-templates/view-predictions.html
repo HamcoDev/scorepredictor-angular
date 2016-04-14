@@ -1,9 +1,8 @@
 <div ng-controller="viewPredictionsController">
-    <h2>
-				<center>View Predictions<center>
-			</h2>
+    <h2>View Predictions</h2>
             
-            {{ fixtureList }}
+             <div ng-repeat="fixture in fixtureList" > 
+            {{ fixture.id }} </div>
 
     <!--<select ng-change="matchdayChanged()" ng-model="selectedMatchday">
         <option>10</option>

@@ -2,18 +2,25 @@ app.controller("viewPredictionsController", viewPredictionsController);
 
 viewPredictionsController.$inject = [
     "$scope",
+    "$http",
+    "$q",
     "dataService"
 ];
 
 function viewPredictionsController(
     $scope,
+    $http,
+    $q,
     dataService
 ) {
 
-    dataService.getFixtures()
-        .then(function(fixtures) {
-            $scope.fixtureList = fixtures.data;
-        });
+
+$http({method: 'GET', url: '/viewFixtures'})
+    .success(function(data) {
+        $scope.fixtureList = data; 
+    });
+
+
 
     //   dataService.currentMatchday()
     //     .then(function (currentMatchday) {

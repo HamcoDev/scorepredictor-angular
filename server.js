@@ -24,7 +24,7 @@ mongodb.MongoClient.connect(process.env.MONGOLAB_URI || 'mongodb://localhost:270
 
     // Save database object from the callback for reuse.
     db = database;
-    console.log("Database connection ready");
+    console.log("Database connection ready...");
 
     // Initialize the app.    
     var server = app.listen(process.env.PORT || 8080, function() {
@@ -39,9 +39,8 @@ function handleError(res, reason, message, code) {
     res.status(code || 500).json({ "error": message });
 }
 
-/*  "/fixtures"
- *    GET: finds all fixtures
- *    POST: creates a new fixture
+/*  "/updateFixtures"
+ *    GET: populates db with all fixtures
  */
 
 app.get("/updateFixtures", function(req, res) {
@@ -64,6 +63,9 @@ app.get("/updateFixtures", function(req, res) {
     });
 });
 
+/*  "/updateFixtures"
+ *    GET: gets current week's fixtures from db
+ */
 app.get("/viewFixtures", function(req, res) {
   db.collection(FIXTURES_COLLECTION).find({ "matchday": currentMatchday }).toArray(function(err, docs) {
     if (err) {
@@ -80,11 +82,11 @@ app.get("/viewFixtures", function(req, res) {
  *    DELETE: deletes fixture by id
  */
 
-app.get("/fixtures/:id", function(req, res) {
-});
+// app.get("/fixtures/:id", function(req, res) {
+// });
 
-app.put("/fixtures/:id", function(req, res) {
-});
+// app.put("/fixtures/:id", function(req, res) {
+// });
 
-app.delete("/fixtures/:id", function(req, res) {
-}); 
+// app.delete("/fixtures/:id", function(req, res) {
+// }); 
