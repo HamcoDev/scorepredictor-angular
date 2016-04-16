@@ -12,11 +12,28 @@ function enterPredictionsController(
     dataService
 ) {
     //   dataService.checkUserAuthenticated();
-
+    
+    $scope.fixtureNo = 0;
+    var weekFixtures;      
+    
     dataService.retrieveFixtures()
         .then(function(fixtures) {
-            $scope.fixtures = fixtures;
+            weekFixtures = fixtures;
+            $scope.fixture = weekFixtures[$scope.fixtureNo];
+            $scope.noOfGames = weekFixtures.length - 1;            
         });
+      
+    $scope.nextFixture = function() {
+        $scope.fixtureNo += 1;
+        $scope.fixture = weekFixtures[$scope.fixtureNo];
+    };
+    
+    $scope.prevFixture = function() {
+        $scope.fixtureNo -= 1;
+        $scope.fixture = weekFixtures[$scope.fixtureNo];
+    };
+    
+    
         
         
     //       $scope.submit = function () {

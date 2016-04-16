@@ -18,8 +18,11 @@ app.service("dataService", function($q, $http) {
                     });
             });
         }
+        
     }
 });
+
+
 
 
 // app.factory("dataService", dataService);

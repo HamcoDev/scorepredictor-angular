@@ -1,3 +1,31 @@
 body {
   padding-top: 40px;
 }
+
+.fixture {
+  border: 3px solid #73AD21;
+  text-align: center;
+  font-size: 20px;
+  padding: 5% 5% 7% 5%;
+}
+
+.title {
+  text-align: center;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.scoreInput {
+  text-align: center;
+  width: 80px;
+}
+
+.teamLabel {  
+  text-align: center;
+  padding-bottom: 10%;
+  padding-right: 2%;
+}
+
+.fixtureDate {
+  padding-bottom: 2%;
+  text-align: center;
+}

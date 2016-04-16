@@ -1,11 +1,7 @@
 app.directive('ngFixture', function() {
   return {
     restrict: 'A',
-    require: '^ngModel',
-    scope: {
-      ngModel: '='
-    },
+    scope: false,
     templateUrl: './js/ng-templates/fixture.html'
-    //template: '<div class="fixture">Hello World!</div>'
   }
 });

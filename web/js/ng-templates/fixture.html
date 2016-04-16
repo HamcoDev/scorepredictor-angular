@@ -1,3 +1,13 @@
 <div class="fixture">
-    Place Fixture here!
+    <div class="form-group">
+        <div class="fixtureDate" type="date"> {{ fixture.date | date:'dd-MM-yyyy HH:mm' }} </div>
+            <label>
+                <span class="teamLabel"> {{ fixture.homeTeamName }} </span>
+                <input class="form-control scoreInput" type="text" placeholder="0" ng-model="fixture.homePrediction">
+            </label>
+            <label>
+                <span class="teamLabel"> {{ fixture.awayTeamName }} </span>
+                <input class="form-control scoreInput" type="text" placeholder="0" ng-model="fixture.awayPrediction">
+            </label>
+    </div>
 </div>
