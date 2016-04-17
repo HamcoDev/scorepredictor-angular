@@ -63,15 +63,30 @@ app.get("/updateFixtures", function(req, res) {
     });
 });
 
-/*  "/updateFixtures"
+/*  "/viewFixtures"
  *    GET: gets current week's fixtures from db
  */
-app.get("/viewFixtures", function(req, res) {
-  db.collection(FIXTURES_COLLECTION).find({ "matchday": currentMatchday }).toArray(function(err, docs) {
+app.get("/viewFixtures/:matchday", function(req, res) {
+    console.log(req.params.matchday);
+    var matchdayParam = req.params.matchday;
+  db.collection(FIXTURES_COLLECTION).find({"matchday": 34}).toArray(function(err, docs) {
     if (err) {
       handleError(res, err.message, "Failed to get fixtures.");
     } else {
       res.status(200).json(docs);
+    }
+  });
+});
+
+/*  "/matchday"
+ *    GET: gets current week's fixtures from db
+ */
+app.get("/matchday", function(req, res) {
+  db.collection(FIXTURES_COLLECTION).find({ "status": "TIMED" }).toArray(function(err, docs) {
+    if (err) {
+      handleError(res, err.message, "Failed to get fixtures.");
+    } else {
+      res.status(200).json(docs[0].matchday);
     }
   });
 });

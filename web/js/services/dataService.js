@@ -1,9 +1,9 @@
 app.service("dataService", function($q, $http) {
     return {
         
-        retrieveFixtures: function() {
+        retrieveFixtures: function(matchday) {
             return $q(function(resolve, reject) {
-                $http.get('/viewFixtures')
+                $http.get('/viewFixtures/' + matchday)
                     .then(function(fixtures) {
                         resolve(fixtures.data);
                     });
@@ -17,8 +17,16 @@ app.service("dataService", function($q, $http) {
                         resolve(response);  
                     });
             });
-        }
+        },
         
+        getMatchweek: function() {
+            return $q(function(resolve, reject) {
+                $http.get('/matchday')
+                    .then(function(response) {
+                        resolve(response.data);  
+                    });
+            }); 
+        }     
     }
 });
 
